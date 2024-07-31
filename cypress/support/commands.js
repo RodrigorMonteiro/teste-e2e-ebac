@@ -14,5 +14,4 @@ Cypress.Commands.add('fillCheckout', (city, street, zipcode, phone) => {
   cy.get('#terms').click()
   cy.get('#place_order').click()
   cy.wait(750)
-  cy.get('.page-title').should('have.text', 'Pedido recebido')
 })

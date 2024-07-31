@@ -63,6 +63,8 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   cy.fixture('checkout').then((dados) => {
     cy.fillCheckout(dados.city, dados.street, dados.zipCode, dados.phone)
 })
+cy.get('.page-title').should('have.text', 'Pedido recebido')
+
   });
 
 
