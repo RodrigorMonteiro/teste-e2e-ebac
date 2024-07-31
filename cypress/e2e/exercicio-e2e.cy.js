@@ -1,7 +1,8 @@
 /// <reference types="cypress" />
 import produtosPage from "../support/page_objects/produtos.page";
-// import * as faker from 'faker'
-import * as faker from '@faker-js/faker';
+import { fakerPT_BR } from '@faker-js/faker';
+
+let dadosCheckout
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   /*  Como cliente 
@@ -12,6 +13,11 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
       Preenchendo todas opções no checkout
       E validando minha compra ao final */
 
+      before(() => {
+        cy.fixture('checkout').then(checkout => {
+            dadosCheckout = checkout
+        })
+    });
   beforeEach(() => {
       cy.visit('minha-conta')
   });
@@ -52,17 +58,13 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
             dados[3].cor, 
             dados[3].quantidade)
         })
-        //Criar page object para as seguintes linhas
-  cy.get('.woocommerce-message > .button').click()
-  cy.get('.checkout-button').click()
-  cy.get('#billing_city').clear().type('faker.location.city()')
-  cy.get('#billing_address_1').clear().type('faker.location.street()')
-  cy.get('#billing_postcode').clear().type('57035000')
-  cy.get('#billing_phone').clear().type('999999999')
-  cy.get('#terms').click()
-  cy.get('#place_order').click()
-  cy.get('.page-title').should('have.text', 'Pedido recebido')
+        //Criar custom command para as seguintes linhas
+  // cy.fillCheckout(fakerPT_BR.location.city(), fakerPT_BR.location.street(), fakerPT_BR.location.zipCode(), fakerPT_BR.phone.number())
+  cy.fixture('checkout').then((dados) => {
+    cy.fillCheckout(dados.city, dados.street, dados.zipCode, dados.phone)
+})
   });
+
 
 
 })
