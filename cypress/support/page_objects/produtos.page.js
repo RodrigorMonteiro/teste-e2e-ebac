@@ -15,7 +15,6 @@ class ProdutosPage {
     }
 
     visitarProduto(nomeProduto) {
-        //cy.visit(`produtos/${nomeProduto}`)
         const urlFormatada = nomeProduto.replace(/ /g, '-')
         cy.visit(`produtos/${urlFormatada}`)
     }

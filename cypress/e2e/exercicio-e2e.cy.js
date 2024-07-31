@@ -23,7 +23,6 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   });
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-      //TODO: Coloque todo o fluxo de teste aqui, considerando as boas práticas e otimizações
     cy.fixture('perfil').then(dados => {
         cy.get('#username').type(dados.usuario)
         cy.get('#password').type(dados.senha, {log: false})
@@ -58,8 +57,6 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
             dados[3].cor, 
             dados[3].quantidade)
         })
-        //Criar custom command para as seguintes linhas
-  // cy.fillCheckout(fakerPT_BR.location.city(), fakerPT_BR.location.street(), fakerPT_BR.location.zipCode(), fakerPT_BR.phone.number())
   cy.fixture('checkout').then((dados) => {
     cy.fillCheckout(dados.city, dados.street, dados.zipCode, dados.phone)
 })
