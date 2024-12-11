@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/RodrigorMonteiro/teste-e2e-ebac.git'
                 bat 'npm install'
-                sh 'npm install cypress --save-dev'
+                bat 'npm install cypress --save-dev'
             }
         }
         stage('Test') {
