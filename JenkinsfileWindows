@@ -9,12 +9,10 @@ pipeline {
                 cmd_exec 'npm install cypress --save-dev'
             }
         }
-        //stage('Test') {
-        def cmd_exec('''set NO_COLOR=1
-npm test'''){
+        stage('Test') {
             steps {
-                 return bat (returnStdout: true, script: "${'''set NO_COLOR=1
-npm test'''}").trim()
+                bat '''set NO_COLOR=1
+npm test'''
             }
         }
     }
