@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                git branch: 'main', url: 'https://github.com/RodrigorMonteiro/teste-e2e-ebac.git'
-                cmd_exec 'npm install'
-                cmd_exec 'npm install cypress --save-dev'
+                git branch: 'main', url: 'https://github.com/RodrigorMonteiro/teste-ebac-ui.git'
+                bat 'npm install'
+ bat 'npm install cypress --save-dev'
             }
         }
         stage('Test') {
